@@ -52,7 +52,7 @@
 
           <tbody>
             <tr>
-              <td>{{ $index+1 }}</td>
+              <td>{{ $labdetail->id }}</td>
               <td><a data-toggle="modal" data-backdrop="static" data-target="#update_data{{ $labdetail->id }}">Edit</a> | <a>Delete</a>
                 
                   <div class="modal fade" id="update_data{{ $labdetail->id }}">
@@ -60,69 +60,70 @@
               					<div class="modal-content">
               						<div class="modal-header">
               							<button class="close" data-dismiss="modal">&times;</button>
-              							<h4>Add New Person</h4>
+              							<h4>Update data</h4>
               						</div>
               						<div class="modal-body">
-              							<form onsubmit="return submit_form();" id="user_form">
+              							<form action="{{ URL::to('updatelabdetails') }}" onsubmit="return submit_form({{ $labdetail->id }});" id="user_form{{ $labdetail->id }}">
               								<div class="form-group">
               									<label>Lab Name</label>
-              									<input type="text" id="labname" class="form-control" value="{{ $labdetail->lab_name }}" required>
+              									<input type="text" name="labname" id="labname{{ $labdetail->id }}" class="form-control" value="{{ $labdetail->lab_name }}" required>
               								</div>
               								<div class="form-group">
               									<label>PC Name</label>
-              									<input type="text" id="pcname" class="form-control" value="{{ $labdetail->pc_name }}" required>
+              									<input type="text" name="pcname" id="pcname{{ $labdetail->id }}" class="form-control" value="{{ $labdetail->pc_name }}" required>
               								</div>
-              								<div class="form-group">
-              									<label>PC IP</label>
-              									<input type="text" id="pcip" class="form-control" value="{{ $labdetail->pc_ip }}" required>
-              								</div>              								
-              								<div class="form-group">
-              									<label>PC MAC</label>
-              									<input type="text" id="pcmac" class="form-control" value="{{ $labdetail->mac1 }}" required>
-              								</div>              								
-              								<div class="form-group">
-              									<label>Asset No.</label>
-              									<input type="text" id="pcasset" class="form-control" value="{{ $labdetail->assetno }}" required>
-              								</div>              								
-              								<div class="form-group">
-              									<label>PC Type</label>
-              									<input type="text" id="pctype" class="form-control" value="{{ $labdetail->pc_type }}" required>
-              								</div>              								
-              								<div class="form-group">
-              									<label>Processor</label>
-              									<input type="text" id="pcpros" class="form-control" value="{{ $labdetail->processor }}" required>
-              								</div>              								
-              								<div class="form-group">
-              									<label>Motherboard</label>
-              									<input type="text" id="pcmb" class="form-control" value="{{ $labdetail->motherboard }}" required>
-              								</div>              								
-              								<div class="form-group">
-              									<label>Ram</label>
-              									<input type="text" id="pcram" class="form-control" value="{{ $labdetail->ram }}" required>
-              								</div>              								
-              								<div class="form-group">
-              									<label>Hard Disk</label>
-              									<input type="text" id="pchdd" class="form-control" value="{{ $labdetail->hdd }}" required>
-              								</div>              								
-              								<div class="form-group">
-              									<label>Location</label>
-              									<input type="text" id="pcloc" class="form-control" value="{{ $labdetail->location }}" required>
-              								</div>
-              								<div class="form-group">
-              									<label>Department</label>
-              									<input type="text" id="pcdept" class="form-control" value="{{ $labdetail->department }}" required>
-              								</div>              								
-              								<div class="form-group">
-              									<label>Entry Date</label>
-              									<input type="text" id="pcdate" class="form-control" value="{{ $labdetail->entrydate }}" required>
-              								</div>
-              								<div class="form-group">
-              									<label>Comment</label>
-              									<textarea id="pccomnt" class="form-control">{{ $labdetail->comment }}</textarea>
-              								</div>
+              								<!--<div class="form-group">-->
+              								<!--	<label>PC IP</label>-->
+              								<!--	<input type="text" name="pcip" id="pcip" class="form-control" value="{{ $labdetail->pc_ip }}" required>-->
+              								<!--</div>              								-->
+              								<!--<div class="form-group">-->
+              								<!--	<label>PC MAC</label>-->
+              								<!--	<input type="text" name="pcmac" id="pcmac" class="form-control" value="{{ $labdetail->mac1 }}" required>-->
+              								<!--</div>              								-->
+              								<!--<div class="form-group">-->
+              								<!--	<label>Asset No.</label>-->
+              								<!--	<input type="text" name="pcasset" id="pcasset" class="form-control" value="{{ $labdetail->assetno }}" required>-->
+              								<!--</div>              								-->
+              								<!--<div class="form-group">-->
+              								<!--	<label>PC Type</label>-->
+              								<!--	<input type="text" name="pctype" id="pctype" class="form-control" value="{{ $labdetail->pc_type }}" required>-->
+              								<!--</div>              								-->
+              								<!--<div class="form-group">-->
+              								<!--	<label>Processor</label>-->
+              								<!--	<input type="text" name="pcpros" id="pcpros" class="form-control" value="{{ $labdetail->processor }}" required>-->
+              								<!--</div>              								-->
+              								<!--<div class="form-group">-->
+              								<!--	<label>Motherboard</label>-->
+              								<!--	<input type="text" name="pcmb" id="pcmb" class="form-control" value="{{ $labdetail->motherboard }}" required>-->
+              								<!--</div>              								-->
+              								<!--<div class="form-group">-->
+              								<!--	<label>Ram</label>-->
+              								<!--	<input type="text" name="pcram" id="pcram" class="form-control" value="{{ $labdetail->ram }}" required>-->
+              								<!--</div>              								-->
+              								<!--<div class="form-group">-->
+              								<!--	<label>Hard Disk</label>-->
+              								<!--	<input type="text" name="pchdd" id="pchdd" class="form-control" value="{{ $labdetail->hdd }}" required>-->
+              								<!--</div>              								-->
+              								<!--<div class="form-group">-->
+              								<!--	<label>Location</label>-->
+              								<!--	<input type="text" name="pcloc" id="pcloc" class="form-control" value="{{ $labdetail->location }}" required>-->
+              								<!--</div>-->
+              								<!--<div class="form-group">-->
+              								<!--	<label>Department</label>-->
+              								<!--	<input type="text" name="pcdept" id="pcdept" class="form-control" value="{{ $labdetail->department }}" required>-->
+              								<!--</div>              								-->
+              								<!--<div class="form-group">-->
+              								<!--	<label>Entry Date</label>-->
+              								<!--	<input type="text" name="pcdate" id="pcdate" class="form-control" value="{{ $labdetail->entrydate }}" required>-->
+              								<!--</div>-->
+              								<!--<div class="form-group">-->
+              								<!--	<label>Comment</label>-->
+              								<!--	<textarea name="pccomnt" id="pccomnt" class="form-control">{{ $labdetail->comment }}</textarea>-->
+              								<!--</div>-->
               							
               								<div class="form-group">
-              									<button class="btn btn-info btn-block btn-lg">Submit</button>
+                                    <input type="submit" value="submit" class="btn btn-primary">
+                                    <input type="hidden" name="_token" value="{{ Session::token() }}">
               								</div>
               							</form>
               						</div>

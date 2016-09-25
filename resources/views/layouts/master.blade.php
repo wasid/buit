@@ -4,6 +4,7 @@
         @section('head')
             <meta charset="UTF-8">
             <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+             <meta name="csrf-token" content="{{ csrf_token() }}">
         @show 
     </head>
     <body>
@@ -47,7 +48,82 @@
 		<script src="http://code.jquery.com/jquery-1.12.0.min.js" type="text/javascript"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-        
+        <!--<script type="text/javascript" src="{{ URL::asset('js/appjs.js') }}"></script>-->
+        <script type="text/javascript">
+				$.ajaxSetup({
+                          headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                          }
+                        });
+           	   function submit_form(edit_id){
+        	    	console.log(edit_id);
+        		
+        		var edit_form = document.getElementById('user_form'+edit_id);
+				
+				var edit_labname = document.getElementById('labname'+edit_id).value,
+					edit_pcname = document.getElementById('pcname'+edit_id).value;
+					
+				console.log(edit_pcname);
+
+				xmlhttp = new XMLHttpRequest();	
+				var url = "{{ URL::to('updatelabdetails') }}";
+			    var params = 'labname='+edit_labname+'&pcname='+edit_pcname;
+			    console.log(params);
+			    xmlhttp.open('GET', url+"?"+params, true);
+
+		//		xmlhttp.open("GET", 'updatelabdetails', true);
+				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				
+	
+				xmlhttp.onreadystatechange = function() {//Call a function when the state changes.
+				    if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+						        console.log(xmlhttp.responseText);
+						    }
+						}
+				xmlhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+				xmlhttp.send();
+				$('#update_data'+edit_id).modal('hide');
+				return false;
+				edit_form.reset();
+					
+
+				
+			}
+       </script>
+   <script type="text/javascript">
+      
+
+    //         function submit_form(edit_id) {
+            	
+    //         	console.log(edit_id);
+            	
+    //         	var edit_labname = document.getElementById('labname'+edit_id).value,
+				// 	edit_pcname = document.getElementById('pcname'+edit_id).value;
+					
+
+    //             xmlhttp = new XMLHttpRequest();
+
+    //             var url = "{{ URL::to('updatelabdetails') }}";
+
+    //             var params = 'labname='+edit_labname+'&pcname='+edit_pcname;
+
+    //             console.log(params);
+
+    //             xmlhttp.open('GET', url+"?"+params, true);
+    //           //  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    //             xmlhttp.onreadystatechange = function() {
+    //                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    //                     console.log(xmlhttp.responseText);
+    //                 }
+    //             }
+
+    //             xmlhttp.send();
+    //         	 $('#update_data'+edit_id).modal('hide');
+				// return false;
+    //         }
+        </script>
+
 	@show
     </body>
     <div class="navbar navbar-default">

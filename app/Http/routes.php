@@ -53,10 +53,13 @@
             'as' => 'showlabdetails'
         ]);
         
-       Route::get('/updatelabdetails', [
-            'uses' => 'LoginController@updateLabDetails',
-            'as' => 'updatelabdetails'
-        ]);        
+    //   Route::get('/updatelabdetails', [
+    //         'uses' => 'LoginController@updateLabDetails',
+    //         'as' => 'updatelabdetails'
+    //     ]);      
+  //  Route::get('/updatelabdetails', 'HomeController@me');
+      Route::get('updatelabdetails', 'LoginController@updateLabDetails');
+
        Route::post('/storelabdetails', [
             'uses' => 'LoginController@storeLabDetails',
             'as' => 'storelabdetails'

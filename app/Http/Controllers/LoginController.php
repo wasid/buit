@@ -65,17 +65,19 @@ class LoginController extends Controller {
 				->with('labdetails', $labdetails);
 	}
 	
-	public function updateLabDetails(){
-		
-	//	$users = User::all();
-		$user = Auth::user();
+	public function updateLabDetails(Request $request){
+		// return $this->isXmlHttpRequest();
+		 $post = $request->all();
+ 		 var_dump($post);
+		 die();
+		//	$users = User::all();
+		// $user = Auth::user();
 
 
 
-		$labnames = Labdetails2::whereIn('lab_name', $user)->get();
-var_dump($labnames);
-die();	
-		return View('updatelabdetails');
+		// $labnames = Labdetails2::whereIn('lab_name', $user)->get();
+	
+		// return View('updatelabdetails');
 //				->with('user', $user)
 //				->with('labnames', $labnames);
 	}
